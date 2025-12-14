@@ -1,0 +1,366 @@
+/* ===============================
+   GLOBAL ROOT VARIABLES
+================================= */
+:root {
+  --accent: #6366f1;
+  --global-blur: 12px;
+}
+
+/* ===============================
+   PAGE ROOT
+================================= */
+.settings-root {
+  width: 100%;
+  padding-bottom: 4rem;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2rem;
+  padding: 2.4rem;
+}
+
+@media (max-width: 1024px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   CARD BASE STYLE
+================================= */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  padding: 1.35rem;
+  backdrop-filter: blur(var(--global-blur));
+  -webkit-backdrop-filter: blur(var(--global-blur));
+  box-shadow: 0 10px 30px rgba(2,6,23,0.45);
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(2,6,23,0.55);
+}
+
+.card + .card {
+  margin-top: 1.4rem;
+}
+
+/* ===============================
+   CARD HEADINGS
+================================= */
+.card-head {
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.card-sub {
+  font-size: 0.78rem;
+  color: var(--subtext);
+}
+
+/* ===============================
+   PROFILE CARD
+================================= */
+.profile-top {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.avatar-wrap {
+  width: 105px;
+  height: 105px;
+  position: relative;
+}
+
+.avatar-img {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.1);
+  box-shadow: 0 12px 28px rgba(99,102,241,0.28);
+}
+
+.avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.18s;
+  cursor: pointer;
+}
+
+.avatar-wrap:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.profile-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* ===============================
+   INPUT ROWS
+================================= */
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.meta-row label {
+  font-size: 0.78rem;
+  color: var(--subtext);
+  font-weight: 500;
+}
+
+.meta-row input,
+.meta-row textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  transition: 0.2s ease;
+}
+
+.meta-row input:focus,
+.meta-row textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.25);
+  outline: none;
+}
+
+/* ===============================
+   BUTTONS — PREMIUM
+================================= */
+
+/* 🔥 Primary Button (Purple Animated Gradient) */
+.btn-primary {
+  padding: 0.9rem 1.2rem;
+  border-radius: 1rem;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  width: 100%;
+  text-align: center;
+
+  background: linear-gradient(135deg, #6366f1, #7c3aed, #a855f7);
+  background-size: 260% 260%;
+  animation: btnGlow 5s ease infinite;
+
+  box-shadow: 0 12px 28px rgba(99,102,241,0.32);
+  transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 18px 42px rgba(99,102,241,0.45);
+}
+
+@keyframes btnGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 120% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✨ Gold Premium Upgrade Button */
+.premium-btn {
+  padding: 0.9rem 1.3rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #FFC453, #FF8A00, #FF5E00);
+  background-size: 240% 240%;
+  animation: shineGold 4s ease infinite;
+
+  box-shadow: 0 12px 32px rgba(255,153,0,0.35);
+  transition: 0.25s ease;
+}
+
+.premium-btn:hover {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 16px 42px rgba(255,153,0,0.55);
+}
+
+@keyframes shineGold {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 120% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Outline Button */
+.btn-outline {
+  padding: 0.85rem 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(99,102,241,0.25);
+}
+
+/* ===============================
+   PREFERENCES
+================================= */
+.pref-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.pill {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ===============================
+   THEME GRID
+================================= */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.theme-tile {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.25s ease;
+  height: 95px;
+  position: relative;
+}
+
+.theme-tile:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.32);
+}
+
+/* 🔥 FIX: THEME PREVIEW VISIBLE NOW */
+.theme-tile .preview {
+  width: 100%;
+  height: 62%;
+  background-size: 200% 200%;
+  animation: themeFloat 6s ease infinite;
+}
+
+@keyframes themeFloat {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* TILE BOTTOM TEXT */
+.theme-tile .meta {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ACTIVE THEME */
+.theme-tile.active {
+  border-color: var(--accent);
+  box-shadow: 0 12px 32px rgba(99,102,241,0.35);
+  transform: scale(1.03);
+}
+
+/* LOCKED THEMES (Pro Only) */
+.theme-tile.locked {
+  filter: grayscale(0.3);
+}
+
+.locked-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===============================
+   PREMIUM CARD
+================================= */
+.premium-card {
+  box-shadow: 0 12px 40px rgba(250,220,130,0.13);
+}
+
+.hero-badge {
+  background: linear-gradient(135deg,#FFD166,#FF8A00);
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.6rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+/* ===============================
+   TOAST
+================================= */
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  padding: 0.85rem 1.2rem;
+  background: rgba(0,0,0,0.65);
+  color: white;
+  border-radius: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}

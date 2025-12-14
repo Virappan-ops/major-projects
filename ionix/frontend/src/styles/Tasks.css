@@ -1,0 +1,306 @@
+/* Tasks.css - Final Enhanced */
+
+/* --- LAYOUT --- */
+.tasks-container {
+  padding: 0 32px; /* Top padding removed for sticky effect */
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* --- STICKY GLASS HEADER --- */
+.sticky-glass-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0; /* Creates breathing room */
+  margin-bottom: 20px;
+  
+  /* The Glass Blur Gradient Effect */
+  background: linear-gradient(180deg, var(--bg1) 60%, rgba(0,0,0,0) 100%);
+  /* Note: Pure blur sometimes glitches with full transparency, using gradient fade is smoother */
+  backdrop-filter: blur(2px); 
+}
+
+/* Status Pill (Left Side) */
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  font-size: 13px;
+  color: var(--text);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  backdrop-filter: blur(10px);
+}
+
+/* Sticky Add Button (Right Side) */
+.sticky-add-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); /* Indigo to Violet */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.sticky-add-btn:hover {
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* --- LIST GRID --- */
+.tasks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 100px; /* Extra space for bottom scroll */
+}
+
+/* --- CARD STYLES (Kept consistent) --- */
+.glass-task-card {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-left: 4px solid transparent; 
+  padding: 18px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.glass-task-card:hover {
+  background: var(--bg2);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-color: var(--subtext);
+}
+
+.glass-task-card.completed {
+  opacity: 0.5;
+  filter: grayscale(100%);
+  background: transparent;
+  border: 1px dashed var(--border);
+  box-shadow: none;
+}
+
+/* --- CHECKBOX --- */
+.checkbox-circle {
+  width: 24px; 
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--subtext);
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  transition: 0.3s;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.glass-task-card:hover .checkbox-circle { border-color: var(--text); }
+
+.checkbox-circle.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* --- TEXT --- */
+.task-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+.glass-task-card.completed .task-text {
+  text-decoration: line-through;
+  color: var(--subtext);
+}
+
+.meta-tag {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.meta-text {
+  font-size: 12px;
+  color: var(--subtext);
+  font-weight: 500;
+}
+
+/* --- ACTIONS --- */
+.icon-btn-delete {
+  padding: 10px;
+  border-radius: 12px;
+  color: var(--subtext);
+  opacity: 0;
+  transition: 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn-delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.glass-task-card:hover .icon-btn-delete { opacity: 1; }
+
+/* --- EMPTY STATE --- */
+.empty-state {
+  text-align: center;
+  padding: 80px 0;
+  color: var(--subtext);
+  opacity: 0.7;
+}
+.empty-icon { font-size: 56px; margin-bottom: 16px; display: block; }
+
+/* --- MODAL (Premium) --- */
+.modal-overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.premium-modal {
+  width: 90%;
+  max-width: 500px;
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.close-btn {
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--bg3);
+  color: var(--subtext);
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.close-btn:hover { background: var(--border); color: var(--text); }
+
+/* Inputs */
+.title-input {
+  width: 100%;
+  background: var(--bg2);
+  border: 2px solid transparent;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-radius: 18px;
+  color: var(--text);
+  outline: none;
+  transition: 0.3s;
+}
+
+.title-input:focus {
+  background: var(--bg1);
+  border-color: #6366f1; /* Focus Color */
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.title-input.input-error {
+  border-color: #ef4444;
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Chips Groups */
+.selection-group { margin-bottom: 24px; }
+.group-label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; color: var(--subtext);
+  margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.6px;
+}
+
+.chips-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.chip {
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--bg2);
+  color: var(--subtext);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip:hover { background: var(--bg3); color: var(--text); }
+
+.chip.active {
+  background: var(--text);
+  color: var(--bg1);
+  font-weight: 600;
+  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.2);
+  transform: translateY(-1px);
+}
+
+/* Specific Active Colors */
+.chip.high.active { background: #ef4444; color: white; }
+.chip.medium.active { background: #f59e0b; color: white; }
+.chip.low.active { background: #10b981; color: white; }
+
+.chip.outline { border: 1px solid var(--border); background: transparent; }
+.chip.outline.active { border-color: transparent; background: var(--text); }
+
+.chip.minimal { background: transparent; padding: 8px 14px; }
+.chip.minimal.active { background: var(--bg3); color: var(--text); border: 1px solid var(--border); }
+
+.submit-btn-premium {
+  width: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+  transition: transform 0.2s;
+}
+
+.submit-btn-premium:active { transform: scale(0.98); }

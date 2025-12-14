@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Old static vars (okay to keep) */
+
+:root {
+  --bg-main: #0f0c29;
+  --bg-secondary: #302b63;
+  --bg-tertiary: #24243e;
+  --nav-bg: #0f0c29;
+  --card-bg: rgba(255,255,255,0.07);
+  --glass-border: rgba(255,255,255,0.15);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.7);
+}
+
+[data-theme="light"] {
+  --bg-main: #f2f2f7;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e4e4ea;
+  --nav-bg: #e0e0e0; 
+  --card-bg: rgba(255,255,255,0.8);
+  --glass-border: rgba(0,0,0,0.08);
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-main: #0f0c29;
+  --bg-secondary: #302b63;
+  --bg-tertiary: #24243e;
+  --nav-bg: #000000;
+  --card-bg: rgba(255,255,255,0.07);
+  --glass-border: rgba(255,255,255,0.12);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.65);
+  color-scheme: dark;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* View transition tuning (safe even if unused) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  mix-blend-mode: normal;
+}
+

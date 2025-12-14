@@ -1,0 +1,228 @@
+/* Sidebar.css - ULTRA PREMIUM VERSION */
+
+/* MAIN SIDEBAR */
+.sidebar-container {
+  height: 100vh;
+  background-color: var(--nav);
+  border-right: 1px solid var(--border);
+
+  /* TRUE GLASS BLUR */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* DEPTH + SEPARATION */
+  box-shadow:
+    6px 0 24px rgba(0, 0, 0, 0.08),
+    inset -1px 0 0 rgba(255, 255, 255, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  transition:
+    width 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+
+  position: relative;
+  z-index: 50;
+}
+
+.sidebar-container.open {
+  width: 260px;
+}
+
+.sidebar-container.closed {
+  width: 80px;
+}
+
+/* SIDEBAR TOGGLE BUTTON */
+.toggle-btn {
+  position: absolute;
+  top: 2rem;
+  right: -14px;
+
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: 2px solid var(--bg1);
+  border-radius: 50%;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 60;
+
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.45);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.12);
+  background-color: #4f46e5;
+}
+
+/* LOGO AREA */
+.logo-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: 1rem;
+
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.logo-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.28);
+  flex-shrink: 0;
+}
+
+.app-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: fadeInText 0.5s 0.2s forwards ease;
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* NAVIGATION */
+.nav-list {
+  flex: 1;
+  padding: 1.6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  overflow-x: hidden;
+}
+
+/* NAV ITEM */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  height: 52px;
+
+  padding: 0 0.75rem;
+  border-radius: 16px;
+
+  text-decoration: none;
+  color: var(--subtext);
+
+  transition: all 0.28s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Micro Motion Hover (Apple style) */
+.sidebar-item.inactive:hover {
+  background-color: var(--bg3);
+  color: var(--text);
+
+  transform: translateX(2px);
+}
+
+/* ACTIVE ITEM */
+.sidebar-item.active {
+  background-color: var(--bg2);
+  transform: translateX(2px);
+}
+
+.sidebar-item.active .label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ICON BOX */
+.icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover .icon-box {
+  transform: scale(1.07);
+  filter: brightness(1.1);
+}
+
+/* LABEL TEXT */
+.label {
+  margin-left: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-container.open .label {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+/* ACTIVE GLOW BAR */
+.active-glow-bar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 5px;
+  height: 26px;
+
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+/* FOOTER */
+.sidebar-footer {
+  padding: 1.5rem 1rem;
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* CLOSED STATE (clean + compact) */
+.sidebar-container.closed .label,
+.sidebar-container.closed .app-name {
+  display: none;
+}
+
+.sidebar-container.closed .sidebar-item {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar-container.closed .icon-box {
+  margin: 0;
+}
